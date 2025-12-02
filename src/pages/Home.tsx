@@ -5,6 +5,7 @@ import Pagination from '../components/Pagination';
 import MovieModal from '../components/MovieModal';
 import MovieCardSkeleton from '../components/MovieCardSkeleton';
 import { useMovies } from '../hooks/useMovies';
+import { useHistory } from '../hooks/useHistory';
 
 export default function Home() {
   const {
@@ -17,6 +18,7 @@ export default function Home() {
     fetchDetails,
     clearDetails,
   } = useMovies();
+  const { history, addSearch, clearHistory } = useHistory();
 
   const [page, setPage] = useState(1);
   const [currentQuery, setCurrentQuery] = useState('');
@@ -31,12 +33,6 @@ export default function Home() {
     year = filterYear
   ) => {
     fetchMovies(query, pg, type, year);
-  };
-
-  const handleSearch = (query: string) => {
-    setCurrentQuery(query);
-    setPage(1);
-    doSearch(query, 1);
   };
 
   const handlePageChange = (p: number) => {
@@ -54,6 +50,13 @@ export default function Home() {
     }
   };
 
+  const handleSearch = (query: string) => {
+    addSearch(query);
+    setCurrentQuery(query);
+    setPage(1);
+    fetchMovies(query, 1);
+  };
+
   return (
     <div className="pt-10 pb-20 px-4 max-w-6xl mx-auto">
       <h1 className="text-4xl font-bold text-center mb-4">🎬 Movie Explorer</h1>
@@ -62,6 +65,33 @@ export default function Home() {
       </p>
 
       <SearchBar onSearch={handleSearch} onFilterChange={handleFilterChange} />
+
+      {history.length > 0 && (
+        <div className="mt-4 text-center">
+          <h2 className="text-gray-700 dark:text-gray-300 mb-2 font-semibold">
+            Búsquedas recientes
+          </h2>
+
+          <div className="flex flex-wrap justify-center gap-2">
+            {history.map((item) => (
+              <button
+                key={item}
+                onClick={() => handleSearch(item)}
+                className="px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded-xl text-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition"
+              >
+                {item}
+              </button>
+            ))}
+          </div>
+
+          <button
+            onClick={clearHistory}
+            className="mt-3 text-xs text-red-500 hover:underline"
+          >
+            Limpiar historial
+          </button>
+        </div>
+      )}
 
       {error && <p className="text-center text-red-500 mt-6">{error}</p>}
 
