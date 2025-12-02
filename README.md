@@ -27,7 +27,7 @@ cd movie-explorer-app
 
 npm install
 
-# o
+o
 
 yarn
 
@@ -42,7 +42,7 @@ Para iniciar la aplicación en modo desarrollo:
 
 npm run dev
 
-# o
+o
 
 yarn dev
 
