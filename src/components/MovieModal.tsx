@@ -60,7 +60,7 @@ export default function MovieModal({ movie, onClose }: MovieModalProps) {
           >
             <button
               onClick={onClose}
-              className="absolute right-4 top-4 text-gray-600 dark:text-gray-200 text-2xl"
+              className="absolute right-4 top-4 text-gray-600 dark:text-gray-200 text-2xl cursor-pointer"
               aria-label="Cerrar"
             >
               ✕
@@ -68,9 +68,11 @@ export default function MovieModal({ movie, onClose }: MovieModalProps) {
 
             <div className="flex flex-col md:flex-row gap-6">
               <motion.img
-                src={movie.Poster !== 'N/A' ? movie.Poster : '/placeholder.png'}
+                src={
+                  movie.Poster !== 'N/A' ? movie.Poster : '/clapperboard.png'
+                }
                 alt={movie.Title}
-                className="w-48 h-72 object-cover rounded-lg shadow"
+                className="w-48 h-72 object-fit rounded-lg shadow"
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.4 }}
