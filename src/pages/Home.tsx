@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import SearchBar from '../components/SearchBar';
 import MovieCard from '../components/MovieCard';
 import Pagination from '../components/Pagination';
@@ -6,6 +7,15 @@ import MovieModal from '../components/MovieModal';
 import MovieCardSkeleton from '../components/MovieCardSkeleton';
 import { useMovies } from '../hooks/useMovies';
 import { useHistory } from '../hooks/useHistory';
+
+const containerVariants = {
+  visible: {
+    transition: {
+      staggerChildren: 0.06,
+    },
+  },
+  hidden: {},
+};
 
 export default function Home() {
   const {
@@ -74,13 +84,14 @@ export default function Home() {
 
           <div className="flex flex-wrap justify-center gap-2">
             {history.map((item) => (
-              <button
+              <motion.button
                 key={item}
                 onClick={() => handleSearch(item)}
+                whileHover={{ scale: 1.03 }}
                 className="px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded-xl text-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition"
               >
                 {item}
-              </button>
+              </motion.button>
             ))}
           </div>
 
@@ -95,19 +106,22 @@ export default function Home() {
 
       {error && <p className="text-center text-red-500 mt-6">{error}</p>}
 
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 mt-8">
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 mt-8"
+      >
         {loading
           ? Array.from({ length: 10 }).map((_, i) => (
               <MovieCardSkeleton key={i} />
             ))
           : movies.map((m) => (
-              <MovieCard
-                key={m.imdbID}
-                movie={m}
-                onClick={() => fetchDetails(m.imdbID)}
-              />
+              <motion.div key={m.imdbID} layout>
+                <MovieCard movie={m} onClick={() => fetchDetails(m.imdbID)} />
+              </motion.div>
             ))}
-      </div>
+      </motion.div>
 
       {!loading && movies.length > 0 && (
         <Pagination

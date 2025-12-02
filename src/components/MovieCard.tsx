@@ -64,7 +64,7 @@ export default function MovieCard({ movie, onClick }: MovieCardProps) {
         whileTap={{ scale: 0.9 }}
         animate={isFavorite(movie.imdbID) ? { scale: [1, 1.2, 1] } : {}}
         transition={{ duration: 0.25 }}
-        className="absolute top-2 right-2 text-xl"
+        className="absolute bottom-2 right-2 text-xl"
         aria-label={
           isFavorite(movie.imdbID) ? 'Eliminar favorito' : 'Agregar favorito'
         }
