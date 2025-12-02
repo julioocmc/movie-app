@@ -41,12 +41,10 @@ export async function searchMovies(
       page: String(page),
     });
 
-    // Agregar filtro de tipo (si no es "all")
     if (type && type !== 'all') {
       params.append('type', type);
     }
 
-    // Filtro de año
     if (year) {
       params.append('y', year);
     }

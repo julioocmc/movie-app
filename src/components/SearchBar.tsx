@@ -21,7 +21,6 @@ export default function SearchBar({
     onSearch(trimmed);
   };
 
-  // 🚀 Cada vez que cambia un filtro, avisamos al padre
   const notifyFilters = (newType: string, newYear: string) => {
     if (onFilterChange) {
       onFilterChange(newType, newYear);
@@ -34,7 +33,6 @@ export default function SearchBar({
   };
 
   const handleYearChange = (value: string) => {
-    // permite vacío o números de 4 dígitos
     if (/^\d{0,4}$/.test(value)) {
       setYear(value);
       notifyFilters(type, value);
@@ -43,7 +41,6 @@ export default function SearchBar({
 
   return (
     <div className="w-full max-w-3xl mx-auto flex flex-col gap-4">
-      {/* 🔍 Buscador */}
       <form onSubmit={handleSubmit} className="flex w-full px-2">
         <input
           type="text"
@@ -60,9 +57,7 @@ export default function SearchBar({
         </button>
       </form>
 
-      {/* 🎛️ Filtros */}
       <div className="flex gap-3 justify-center">
-        {/* Tipo */}
         <select
           value={type}
           onChange={(e) => handleTypeChange(e.target.value)}
@@ -73,7 +68,6 @@ export default function SearchBar({
           <option value="series">Series</option>
         </select>
 
-        {/* Año */}
         <input
           type="text"
           value={year}

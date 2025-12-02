@@ -14,7 +14,6 @@ export default function Filters({ onChange }: Props) {
 
   return (
     <div className="flex flex-col md:flex-row gap-4 mt-4 justify-center">
-      {/* Tipo */}
       <select
         value={type}
         onChange={(e) => setType(e.target.value)}
@@ -26,7 +25,6 @@ export default function Filters({ onChange }: Props) {
         <option value="episode">Episodios</option>
       </select>
 
-      {/* Año */}
       <input
         type="number"
         placeholder="Año"

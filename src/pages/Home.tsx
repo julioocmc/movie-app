@@ -21,7 +21,6 @@ export default function Home() {
   const [page, setPage] = useState(1);
   const [currentQuery, setCurrentQuery] = useState('');
 
-  // 🔥 NUEVOS ESTADOS PARA FILTROS
   const [filterType, setFilterType] = useState('');
   const [filterYear, setFilterYear] = useState('');
 
@@ -45,7 +44,6 @@ export default function Home() {
     doSearch(currentQuery, p);
   };
 
-  // 🔥 Cuando cambien los filtros, se dispara la búsqueda
   const handleFilterChange = (type: string, year: string) => {
     setFilterType(type);
     setFilterYear(year);
@@ -63,7 +61,6 @@ export default function Home() {
         Encuentra tus películas favoritas usando la API de OMDb.
       </p>
 
-      {/* 🔥 AGREGARÁ UN COMPONENTE DE FILTROS LUEGO */}
       <SearchBar onSearch={handleSearch} onFilterChange={handleFilterChange} />
 
       {error && <p className="text-center text-red-500 mt-6">{error}</p>}
