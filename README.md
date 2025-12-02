@@ -1,73 +1,92 @@
-# React + TypeScript + Vite
+# Movie Explorer App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación web desarrollada en React y TypeScript que consume la API de OMDb para buscar y visualizar películas y series. Permite filtrar por tipo y año, guardar favoritos, consultar historial de búsquedas y ver detalles de cada película en un modal.
 
-Currently, two official plugins are available:
+## Tecnologías
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React 18 + TypeScript
+- Vite
+- TailwindCSS
+- Framer Motion (animaciones)
+- Hooks personalizados para manejo de favoritos, historial y películas
+- API: [OMDb](http://www.omdbapi.com/)
 
-## React Compiler
+## Requisitos
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Node.js v18+ recomendado
+- npm o yarn
 
-## Expanding the ESLint configuration
+## Instalación
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. Clonar el repositorio:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+```bash
+git clone <URL_DEL_REPOSITORIO>
+cd movie-explorer-app
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+    Instalar dependencias:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+npm install
+# o
+yarn
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+    Crear un archivo .env en la raíz del proyecto con tu API Key de OMDb:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+VITE_OMDB_API_KEY=tu_api_key_aquí
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Puedes obtener la API Key gratuita en: http://www.omdbapi.com/apikey.aspx
+Ejecución local
+
+Para iniciar la aplicación en modo desarrollo:
+
+npm run dev
+# o
+yarn dev
+
+La aplicación estará disponible en http://localhost:5173 (o puerto que indique Vite).
+Scripts disponibles
+
+    dev - Ejecuta la aplicación en modo desarrollo con hot reload
+
+    build - Genera los archivos de producción en la carpeta dist
+
+    preview - Sirve la build de producción localmente para pruebas
+
+Estructura del proyecto
+
+    src/components - Componentes reutilizables (MovieCard, MovieModal, SearchBar, etc.)
+
+    src/pages - Páginas principales (Home, Favorites)
+
+    src/hooks - Hooks personalizados (useMovies, useFavorites, useHistory)
+
+    src/assets - Imágenes estáticas y placeholder
+
+    src/App.tsx - Componente raíz
+
+    src/main.tsx - Punto de entrada de la aplicación
+
+Funcionalidades
+
+    Búsqueda de películas y series
+
+    Filtrado por tipo y año
+
+    Modal con detalles de cada película
+
+    Guardado y eliminación de favoritos
+
+    Historial de búsquedas recientes
+
+    Skeleton loading mientras carga la información
+
+    Animaciones y micro-interacciones con Framer Motion
+
+    Responsive en desktop y mobile
+
+Notas
+
+    Asegúrate de que tu API Key esté activa y correctamente configurada en .env.
+
+    Si la API falla o no encuentra datos, se muestran mensajes amigables al usuario.
 ```
