@@ -70,42 +70,46 @@ export default function MovieModal({ movie, onClose }: MovieModalProps) {
               <motion.img
                 src={movie.Poster !== 'N/A' ? movie.Poster : '/placeholder.png'}
                 alt={movie.Title}
-                className="w-48 rounded-lg shadow"
+                className="w-48 h-72 object-cover rounded-lg shadow"
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.4 }}
               />
 
-              <div className="text-gray-700 dark:text-gray-300 text-md space-y-3">
-                <h2 className="text-2xl font-bold">{movie.Title}</h2>
+              <div className="flex-1 flex flex-col">
+                <h2 className="text-3xl dark:text-gray-300 font-bold mb-3">
+                  {movie.Title}
+                </h2>
 
-                <p className="bg-gray-100 dark:bg-gray-800 p-4 rounded-xl leading-relaxed text-sm">
+                <div className="flex-1 bg-gray-100 dark:bg-gray-800 dark:text-gray-300 p-4 rounded-xl leading-relaxed text-sm overflow-y-auto max-h-[300px]">
                   {movie.Plot}
-                </p>
-
-                <p>
-                  <strong>Año:</strong> {movie.Year}
-                </p>
-                <p>
-                  <strong>Director:</strong> {movie.Director}
-                </p>
-                <p>
-                  <strong>Actores:</strong> {movie.Actors}
-                </p>
-                <p>
-                  <strong>Género:</strong> {movie.Genre}
-                </p>
-
-                {movie.Awards && (
-                  <p>
-                    <strong>Premios:</strong> {movie.Awards}
-                  </p>
-                )}
-
-                <p className="pt-2 font-semibold text-lg">
-                  IMDb Rating: ⭐ {movie.imdbRating}
-                </p>
+                </div>
               </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-6 text-gray-700 dark:text-gray-300 text-sm">
+              <p>
+                <strong>Año:</strong> {movie.Year}
+              </p>
+              <p>
+                <strong>Director:</strong> {movie.Director}
+              </p>
+              <p>
+                <strong>Actores:</strong> {movie.Actors}
+              </p>
+              <p>
+                <strong>Género:</strong> {movie.Genre}
+              </p>
+
+              {movie.Awards && (
+                <p className="md:col-span-2">
+                  <strong>Premios:</strong> {movie.Awards}
+                </p>
+              )}
+
+              <p className="md:col-span-2 font-semibold text-lg pt-2">
+                IMDb Rating: ⭐ {movie.imdbRating}
+              </p>
             </div>
           </motion.div>
         </motion.div>
