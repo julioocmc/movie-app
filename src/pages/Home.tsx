@@ -69,7 +69,9 @@ export default function Home() {
 
   return (
     <div className="pt-10 pb-20 px-4 max-w-6xl mx-auto">
-      <h1 className="text-4xl font-bold text-center mb-4">🎬 Movie Explorer</h1>
+      <h1 className="text-4xl font-bold text-center mb-4 text-gray-300">
+        🎬 Movie Explorer App
+      </h1>
       <p className="text-center text-gray-600 dark:text-gray-300 mb-6">
         Encuentra tus películas favoritas usando la API de OMDb.
       </p>
@@ -77,30 +79,41 @@ export default function Home() {
       <SearchBar onSearch={handleSearch} onFilterChange={handleFilterChange} />
 
       {history.length > 0 && (
-        <div className="mt-4 text-center">
-          <h2 className="text-gray-700 dark:text-gray-300 mb-2 font-semibold">
-            Búsquedas recientes
-          </h2>
+        <div className="mt-6 text-center">
+          <div className="flex justify-center items-center gap-4 mb-4">
+            <h2 className="text-gray-700 dark:text-gray-300 font-semibold text-lg cursor-default">
+              Búsquedas recientes
+            </h2>
 
-          <div className="flex flex-wrap justify-center gap-2">
+            <button
+              onClick={clearHistory}
+              className="text-sm text-red-500 hover:text-red-600 underline cursor-pointer transition"
+            >
+              Limpiar historial
+            </button>
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-3">
             {history.map((item) => (
               <motion.button
                 key={item}
                 onClick={() => handleSearch(item)}
-                whileHover={{ scale: 1.03 }}
-                className="px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded-xl text-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.97 }}
+                className="
+            px-4 py-2 
+            bg-gray-100 dark:bg-gray-800 
+            text-gray-700 dark:text-gray-200 
+            rounded-full 
+            shadow-sm 
+            hover:bg-gray-200 dark:hover:bg-gray-700 
+            transition cursor-pointer text-sm
+          "
               >
                 {item}
               </motion.button>
             ))}
           </div>
-
-          <button
-            onClick={clearHistory}
-            className="mt-3 text-xs text-red-500 hover:underline"
-          >
-            Limpiar historial
-          </button>
         </div>
       )}
 

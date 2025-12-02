@@ -11,9 +11,9 @@ function App() {
       <div className="flex justify-center gap-6 py-4">
         <button
           onClick={() => setTab('home')}
-          className={`px-4 py-2 rounded ${
+          className={`px-4 py-2 rounded cursor-pointer ${
             tab === 'home'
-              ? 'bg-blue-600 text-white'
+              ? 'bg-gray-700 text-white'
               : 'bg-gray-200 text-gray-700'
           }`}
         >
@@ -22,9 +22,9 @@ function App() {
 
         <button
           onClick={() => setTab('favorites')}
-          className={`px-4 py-2 rounded ${
+          className={`px-4 py-2 rounded cursor-pointer ${
             tab === 'favorites'
-              ? 'bg-blue-600 text-white'
+              ? 'bg-gray-700 text-white'
               : 'bg-gray-200 text-gray-700'
           }`}
         >
