@@ -5,6 +5,7 @@ interface MovieCardProps {
     imdbID: string;
     Type: string;
     Poster: string;
+    Awards?: string;
   };
   onClick: () => void;
 }

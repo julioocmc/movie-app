@@ -30,14 +30,28 @@ const BASE_URL = 'https://www.omdbapi.com/';
 
 export async function searchMovies(
   query: string,
-  page: number = 1
+  page: number = 1,
+  type?: string,
+  year?: string
 ): Promise<SearchResponse | { error: string }> {
   try {
-    const res = await fetch(
-      `${BASE_URL}?apikey=${
-        import.meta.env.VITE_OMDB_KEY
-      }&s=${query}&page=${page}`
-    );
+    const params = new URLSearchParams({
+      apikey: import.meta.env.VITE_OMDB_KEY,
+      s: query,
+      page: String(page),
+    });
+
+    // Agregar filtro de tipo (si no es "all")
+    if (type && type !== 'all') {
+      params.append('type', type);
+    }
+
+    // Filtro de año
+    if (year) {
+      params.append('y', year);
+    }
+
+    const res = await fetch(`${BASE_URL}?${params.toString()}`);
     const data: SearchResponse = await res.json();
     return data;
   } catch (err) {

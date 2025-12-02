@@ -21,15 +21,39 @@ export default function Home() {
   const [page, setPage] = useState(1);
   const [currentQuery, setCurrentQuery] = useState('');
 
+  // 🔥 NUEVOS ESTADOS PARA FILTROS
+  const [filterType, setFilterType] = useState('');
+  const [filterYear, setFilterYear] = useState('');
+
+  const doSearch = (
+    query: string,
+    pg = 1,
+    type = filterType,
+    year = filterYear
+  ) => {
+    fetchMovies(query, pg, type, year);
+  };
+
   const handleSearch = (query: string) => {
     setCurrentQuery(query);
     setPage(1);
-    fetchMovies(query, 1);
+    doSearch(query, 1);
   };
 
   const handlePageChange = (p: number) => {
     setPage(p);
-    fetchMovies(currentQuery, p);
+    doSearch(currentQuery, p);
+  };
+
+  // 🔥 Cuando cambien los filtros, se dispara la búsqueda
+  const handleFilterChange = (type: string, year: string) => {
+    setFilterType(type);
+    setFilterYear(year);
+    setPage(1);
+
+    if (currentQuery.trim().length > 0) {
+      doSearch(currentQuery, 1, type, year);
+    }
   };
 
   return (
@@ -39,7 +63,8 @@ export default function Home() {
         Encuentra tus películas favoritas usando la API de OMDb.
       </p>
 
-      <SearchBar onSearch={handleSearch} />
+      {/* 🔥 AGREGARÁ UN COMPONENTE DE FILTROS LUEGO */}
+      <SearchBar onSearch={handleSearch} onFilterChange={handleFilterChange} />
 
       {error && <p className="text-center text-red-500 mt-6">{error}</p>}
 

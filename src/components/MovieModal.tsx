@@ -53,6 +53,9 @@ export default function MovieModal({ movie, onClose }: MovieModalProps) {
             <p>
               <strong>Género:</strong> {movie.Genre}
             </p>
+            <p>
+              <strong>Premios:</strong> {movie.Awards}
+            </p>
             <p className="mt-3 font-semibold">
               IMDb Rating: ⭐ {movie.imdbRating}
             </p>

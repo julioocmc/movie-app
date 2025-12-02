@@ -13,12 +13,18 @@ export function useMovies() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const fetchMovies = async (query: string, page: number = 1) => {
+  const fetchMovies = async (
+    query: string,
+    page: number = 1,
+    type?: string,
+    year?: string
+  ) => {
     if (!query.trim()) return;
+
     setLoading(true);
     setError('');
 
-    const res = await searchMovies(query, page);
+    const res = await searchMovies(query, page, type, year);
 
     if ('error' in res) {
       setError(res.error);
@@ -39,12 +45,14 @@ export function useMovies() {
   const fetchDetails = async (id: string) => {
     setLoading(true);
     const res = await getMovieDetails(id);
+
     if ('error' in res) {
       setError(res.error);
       setDetails(null);
     } else {
       setDetails(res);
     }
+
     setLoading(false);
   };
 
