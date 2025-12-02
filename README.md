@@ -20,17 +20,18 @@ Aplicación web desarrollada en React y TypeScript que consume la API de OMDb pa
 
 1. Clonar el repositorio:
 
-```bash
 git clone <URL_DEL_REPOSITORIO>
 cd movie-explorer-app
 
-    Instalar dependencias:
+2. Instalar dependencias:
 
 npm install
+
 # o
+
 yarn
 
-    Crear un archivo .env en la raíz del proyecto con tu API Key de OMDb:
+3. Crear un archivo .env en la raíz del proyecto con tu API Key de OMDb:
 
 VITE_OMDB_API_KEY=tu_api_key_aquí
 
@@ -40,7 +41,9 @@ Ejecución local
 Para iniciar la aplicación en modo desarrollo:
 
 npm run dev
+
 # o
+
 yarn dev
 
 La aplicación estará disponible en http://localhost:5173 (o puerto que indique Vite).
@@ -89,4 +92,7 @@ Notas
     Asegúrate de que tu API Key esté activa y correctamente configurada en .env.
 
     Si la API falla o no encuentra datos, se muestran mensajes amigables al usuario.
+
+```
+
 ```
